@@ -12,7 +12,9 @@ export const app = express();
 
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin:['https://production-line-management-system.vercel.app','localhost:3000']
+}));
 
 app.use('/api',authRouter);
 app.use('/api',materialRouter);
