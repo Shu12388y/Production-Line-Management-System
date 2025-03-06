@@ -2,8 +2,8 @@ import dotenv from "dotenv";
 dotenv.config({
   path: ".env",
 });
-import { app } from "./server";
-import { DB } from "./utils/db";
+import { app } from "./server.js";
+import { DB } from "./utils/db.js";
 
 DB()
   .then(() => {

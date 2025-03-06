@@ -25,9 +25,6 @@ const userSchema = new mongoose.Schema({
 });
 
 const orderSchema = new mongoose.Schema({
-  orderid: {
-    type: String,
-  },
   productName: {
     type: String,
     required: true,
@@ -41,13 +38,15 @@ const orderSchema = new mongoose.Schema({
   status: {
     type: String,
   },
-  materialId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "material",
-  },
+  materialId: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Material",
+    },
+  ],
   workstationId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "workstation",
+    ref: "Workstation",
   },
 });
 
@@ -72,11 +71,13 @@ const workStationSchema = new mongoose.Schema({
   },
 });
 
-export const User = mongoose.models.User || mongoose.models("User", userSchema);
+export const User = mongoose.models.User || mongoose.model("User", userSchema);
 export const Order =
-  mongoose.models.Order || mongoose.model("Order", orderSchema);
+  mongoose.models.Order ||
+   mongoose.model("Order", orderSchema);
 export const Material =
-  mongoose.models.Material || mongoose.model("Material", materialSchema);
+  mongoose.models.Material ||
+   mongoose.model("Material", materialSchema);
 export const WorkStation =
   mongoose.models.WorkStation ||
   mongoose.model("WorkStation", workStationSchema);

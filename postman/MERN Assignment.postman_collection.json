@@ -1,0 +1,288 @@
+{
+	"info": {
+		"_postman_id": "e7082095-6eca-4204-96d3-bb2895d48163",
+		"name": "MERN Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28176216"
+	},
+	"item": [
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"shubham00999\",\n    \"email\":\"spl.sp999@gmail.com\",\n    \"password\":\"shubham@1234\",\n    \"role\":\"manager\",\n    \"department\":\"IT\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"shubham00999\",\n    \"password\":\"shubham@1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create material",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Steel\",\n    \"currentStock\":130,\n    \"minimumStockLevel\":800\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/creatematerials",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"creatematerials"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all materials",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/materials",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"materials"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get material",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/material/67c718baa22bb83eee1fea51",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"material",
+						"67c718baa22bb83eee1fea51"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update material",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"steel\",\n    \"currentStock\":20,\n    \"minimumStockLevel\":8\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/material/67c718baa22bb83eee1fea51",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"material",
+						"67c718baa22bb83eee1fea51"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create Workstation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"steel frame\",\n    \"status\":\"active\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/createworkstation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"createworkstation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create order",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2M3MTBkOWIzNjJjZWFiOGJhZWY1OTMiLCJyb2xlIjoibWFuYWdlciIsImlhdCI6MTc0MTA5OTMxNSwiZXhwIjoxNzQxMTAwMzE1fQ.b-WrqOuMShUWXtpXme_7RhBw_Lq4eomd5oA2ly2JqlE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n     \"productName\": \"Steel Plates\",\n      \"quantity\": 100,\n      \"priority\": \"low\",\n      \"status\": \"active\",\n      \"materialId\": [\"67c718baa22bb83eee1fea51\", \"67c722ea2cce2afd2d5055cd\"],\n      \"workstationId\":\"67c71b9198bce421f9e9f376\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/createorders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"createorders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get orders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/api/orders?status=pending&workstation=Source",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"orders"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "pending"
+						},
+						{
+							"key": "workstation",
+							"value": "Source"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "analysis",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/api/analytics/overview",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"analytics",
+						"overview"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

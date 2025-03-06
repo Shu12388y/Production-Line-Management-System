@@ -1,15 +1,15 @@
 import { Router } from "express";
-import { User } from "../models/models";
+import { User } from "../models/models.js";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-const authRouter = Router();
+export const authRouter = Router();
 
 authRouter.post("/auth/register", async (req, res) => {
   try {
-    const { data } = await req.body;
+    const data = await req.body;
     if (!data) {
-      return res.status(402).json({ message: "No request body" });
+      return res.status(403).json({ message: "No request body" });
     }
     const findUsername = await User.findOne({
       username: data.username,
@@ -29,13 +29,13 @@ authRouter.post("/auth/register", async (req, res) => {
     await createUser.save();
     return res.status(201).json({ message: "Created" });
   } catch (error) {
-    return res.status(500).json({ message: "Server Error" });
+    return res.status(500).json({ message: "Server Error" + error });
   }
 });
 
-authRouter.get("/auth/login", async (req, res) => {
+authRouter.post("/auth/login", async (req, res) => {
   try {
-    const { data } = await req.body;
+    const data = await req.body;
     if (!data) {
       return res.status(402).json({ message: "No request body" });
     }
@@ -70,6 +70,20 @@ authRouter.get("/auth/login", async (req, res) => {
       expiresIn: 20 * 50,
     });
     return res.status(200).json({ message: createToken });
+  } catch (error) {
+    return res.status(500).json({ message: "Server Error" });
+  }
+});
+
+authRouter.get("/auth/user", async (req, res) => {
+  try {
+    const data = await User.find({
+      role: "operator",
+    }).select("-password");
+    if (!data) {
+      return res.status(404).json({ message: "not user" });
+    }
+    return res.status(200).json({ message: data });
   } catch (error) {
     return res.status(500).json({ message: "Server Error" });
   }
